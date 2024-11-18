@@ -36,13 +36,29 @@
         {% if images|length == 0 %}
         <h2 class="text-center">La búsqueda no arrojó resultados...</h2>
         {% else %} {% for img in images %}
+        {% if img.status == 'Alive' %} 
         <div class="col">
-            <div class="card mb-3 ms-5" style="max-width: 540px;">
+            <div class="card mb-3 ms-5 card border-success" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ img.url }}" class="card-img-top" alt="imagen">
                     </div>
-
+        {% elif img.status == 'Dead' %} 
+        <div class="col">
+            <div class="card mb-3 ms-5 card border-danger" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ img.url }}" class="card-img-top" alt="imagen">
+                    </div>
+        {% else %}
+        <div class="col">
+            <div class="card mb-3 ms-5 card border-warning" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ img.url }}" class="card-img-top" alt="imagen">
+                    </div>
+        {% endif %}
+        
                     <div class="col-md-8">
                         <div class="card-body">   
                             <h3 class="card-title">{{ img.name }}</h3>
